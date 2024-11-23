@@ -45,6 +45,25 @@ Code that follows SOLID principles is generally more reusable. For instance, the
 
 By applying these principles in your Flutter projects, you ensure your codebase is not only robust and scalable but also easier to work with over time. Whether you’re building a small app or a large enterprise-level project, following SOLID principles will help you write better Flutter code.
 
+### Disadvantages :
+---
+
+- **Steep learning curve :** 
+
+Adopting SOLID principles requires a deep understanding of object-oriented programming, which may be challenging for some developers.
+
+- **Overhead :**
+
+Applying SOLID principles may require more time and effort during development.
+
+- **Rigidity :**
+
+Strictly adhering to SOLID principles can lead to overly complex code that is difficult to understand and modify.
+
+- **Inflexibility :**
+
+SOLID principles are guidelines, not strict rules, but some developers may treat them as such, leading to inflexible code.Introduction
+
 
 
 
