@@ -29,7 +29,7 @@ SOLID principles help you structure your code in a way that makes it easier to m
 
 - **Better Testability**
   
-Writing testable code is easier when following SOLID principles. For example, the Dependency Inversion Principle (DIP) encourages you to decouple your components, which in turn makes unit testing simpler and more isolated.
+Writing testable code is easier when following SOLID principles. For example, the Dependency Inversion Principle (DIP) encourages you to decouple your components, which in turn makes testing simpler and more isolated.
 
 - **Cleaner Code**
   
