@@ -56,13 +56,9 @@ Adopting SOLID principles requires a deep understanding of object-oriented progr
 
 Applying SOLID principles may require more time and effort during development.
 
-- **Rigidity :**
-
-Strictly adhering to SOLID principles can lead to overly complex code that is difficult to understand and modify.
-
 - **Inflexibility :**
 
-SOLID principles are guidelines, not strict rules, but some developers may treat them as such, leading to inflexible code.Introduction
+SOLID principles are guidelines, not strict rules, but some developers may treat them as such, leading to inflexible code.
 
 
 
