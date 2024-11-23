@@ -16,5 +16,9 @@ SOLID is an acronym representing five core principles of object-oriented design,
 
 **5.**    D - Dependency Inversion Principle (DIP)
 
+These principles, when applied correctly, ensure that your code is easy to extend, easy to maintain, and less prone to errors or bugs during future updates.
+
+
+
 
 
