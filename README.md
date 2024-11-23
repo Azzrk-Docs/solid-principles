@@ -1,6 +1,7 @@
 # Solid Principles
 
 ### Introduction :
+---
 
 **What are SOLID Principles?**
 
