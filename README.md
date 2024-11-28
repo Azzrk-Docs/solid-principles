@@ -63,7 +63,7 @@ SOLID principles are guidelines, not strict rules, but some developers may treat
 ---
 ## 1. Single Responsibility Principle (SRP) : 
 
-The Single Responsibility Principle (SRP) can be summarized as:
+The Single Responsibility Principle (SRP) can be summarized as :
 
  **"Do One Thing, and Do It Well."**
 
