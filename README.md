@@ -69,6 +69,12 @@ The Single Responsibility Principle (SRP) can be summarized as :
 
 This principle emphasizes that a class, module, or function should be responsible for only one specific task. Each unit of code should have a single, well-defined responsibility and should focus exclusively on fulfilling that responsibility.
 
+* Main concept :
+  
+  **"There should never be more than one reason for a class to change."**
+
+This means a class should change only if there’s a modification to the single responsibility it owns. If a class is responsible for more than one task, changes to any of those tasks could impact the class, leading to increased complexity and a higher likelihood of bugs.
+
 
 
 
