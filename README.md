@@ -63,6 +63,12 @@ SOLID principles are guidelines, not strict rules, but some developers may treat
 ---
 ## 1. Single Responsibility Principle (SRP) : 
 
+The Single Responsibility Principle (SRP) can be summarized as:
+
+ **"Do One Thing, and Do It Well."**
+
+This principle emphasizes that a class, module, or function should be responsible for only one specific task. Each unit of code should have a single, well-defined responsibility and should focus exclusively on fulfilling that responsibility.
+
 
 
 
