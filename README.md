@@ -60,6 +60,8 @@ Applying SOLID principles may require more time and effort during development.
 
 SOLID principles are guidelines, not strict rules, but some developers may treat them as such, leading to inflexible code.
 
+---
+## 1. Single Responsibility Principle (SRP) : 
 
 
 
