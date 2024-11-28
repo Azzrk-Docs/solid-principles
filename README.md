@@ -75,6 +75,75 @@ This principle emphasizes that a class, module, or function should be responsibl
 
 This means a class should change only if there’s a modification to the single responsibility it owns. If a class is responsible for more than one task, changes to any of those tasks could impact the class, leading to increased complexity and a higher likelihood of bugs.
 
+### Example :
+
+If you have a SalesInvoice class responsible for managing invoices, it should contain only logic related to invoices:
+
+**Good Example (SRP Compliant) :**
+
+``` dart
+
+class SalesInvoice {
+  void generateInvoice() {
+    // Logic to generate invoice
+  }
+
+  void calculateTotal() {
+    // Logic to calculate invoice total
+  }
+}
+
+```
+Here, the SalesInvoice class is responsible only for invoice-related tasks.
+
+**Bad Example (Violates SRP) :**
+
+``` dart
+
+class SalesInvoice {
+  void generateInvoice() {
+    // Logic to generate invoice
+  }
+
+  void calculateTotal() {
+    // Logic to calculate invoice total
+  }
+
+  void sendInvoiceByEmail() {
+    // Logic to send invoice via email (This violates SRP)
+  }
+}
+
+```
+In this case, the SalesInvoice class now has two responsibilities:
+
+1. Managing invoices.
+2. Sending emails.
+
+This violates the SRP because now the class could change for two reasons : 
+
+if the invoice logic changes or if the email-sending logic needs modification.
+
+**Main point :**
+
+- **A class should have one and only one reason to change, meaning it should have only one job.**
+
+By adhering to the Single Responsibility Principle:
+
+Your code becomes easier to maintain.
+
+Changes can be made in isolation, reducing the risk of introducing bugs.
+
+The code is more reusable and easier to test.
+
+---
+
+
+
+
+
+
+
 
 
 
