@@ -149,6 +149,129 @@ Flutter projects often involve building widgets, managing state, and interacting
 
 **By following SRP, you create a cleaner separation of concerns, leading to a more organized codebase.**
 
+**Example** 
+
+* Problem: Violating SRP :
+
+Consider a UserProfileWidget that handles :
+
+Displaying the UI.
+
+Fetching user data from an API.
+
+Managing local state for editing profile details.
+
+``` dart
+
+class UserProfileWidget extends StatelessWidget {
+  final UserService userService = UserService();
+
+  @override
+  Widget build(BuildContext context) {
+    final user = userService.fetchUser(); // Fetching user data
+    return Column(
+      children: [
+        Text("Name: ${user.name}"), // Displaying user data
+        ElevatedButton(
+          onPressed: () {
+            userService.updateUser(user); // Updating user details
+          },
+          child: Text("Save"),
+        ),
+      ],
+    );
+  }
+}
+
+```
+This widget violates SRP because it handles UI rendering, data fetching, and updating the user profile in one place.
+
+**Solution : Applying SRP**
+
+* We can refactor this code to separate responsibilities :
+
+UserService : Responsible for data fetching and updating.
+
+UserProfileViewModel : Manages the state for the user profile.
+
+UserProfileWidget : Focuses solely on UI rendering.
+
+``` dart
+// 1. UserService: Handles API interaction
+class UserService {
+  Future<User> fetchUser() async {
+    // Fetch user from API
+    return User(name: "John Doe");
+  }
+
+  Future<void> updateUser(User user) async {
+    // Update user via API
+  }
+}
+
+// 2. UserProfileViewModel: Manages state
+class UserProfileViewModel extends ChangeNotifier {
+  final UserService _userService;
+  User? user;
+
+  UserProfileViewModel(this._userService);
+
+  Future<void> loadUser() async {
+    user = await _userService.fetchUser();
+    notifyListeners();
+  }
+
+  Future<void> saveUser(User updatedUser) async {
+    await _userService.updateUser(updatedUser);
+    user = updatedUser;
+    notifyListeners();
+  }
+}
+
+// 3. UserProfileWidget: Displays UI
+class UserProfileWidget extends StatelessWidget {
+  final UserProfileViewModel viewModel;
+
+  UserProfileWidget({required this.viewModel});
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+      future: viewModel.loadUser(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return CircularProgressIndicator();
+        } else if (viewModel.user == null) {
+          return Text("Error loading user");
+        } else {
+          final user = viewModel.user!;
+          return Column(
+            children: [
+              Text("Name: ${user.name}"), // Only renders UI
+              ElevatedButton(
+                onPressed: () {
+                  viewModel.saveUser(user); // Delegates responsibility
+                },
+                child: Text("Save"),
+              ),
+            ],
+          );
+        }
+      },
+    );
+  }
+}
+
+```
+- **Responsibility separation : Each class in the refactored example has a single responsibility.**
+ 
+- **Testability: With SRP, you can test UserService, UserProfileViewModel, and UserProfileWidget independently.**
+  
+- **Maintainability: Changes to the UI, state management, or data fetching can be made in isolation.**
+
+
+
+
 
 
 ---
