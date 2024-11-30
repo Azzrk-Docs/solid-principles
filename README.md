@@ -285,9 +285,9 @@ class UserProfileWidget extends StatelessWidget {
   This means that you should be able to extend the behavior of a class or a module without modifying its existing code. In other words, you should write code that can grow through extension rather than by altering its existing structure.
 
 
-  ## Why is OCP Important in Flutter ?
+## Why is OCP Important in Flutter ?
 
-  In Flutter development, adhering to OCP helps to :
+In Flutter development, adhering to OCP helps to :
 
 - **Enhance code scalability :** You can add new features without modifying the existing code, reducing the risk of introducing bugs.
   
