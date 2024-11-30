@@ -310,31 +310,110 @@ In Flutter development, adhering to OCP helps to :
  Define an interface with specific methods that can be implemented by multiple classes, enabling each class to have its own version of the behavior.
 
  ### Example :
+ 
+ Let’s say we have a NotificationService that sends notifications. Initially, it only supports sending emails.
 
  **Problem Violating OCP :**
  
- Consider a NotificationService that sends different types of notifications (e.g., Email, SMS, Push). Initially, it only sends email notifications, but now we need to add SMS and push notifications. A direct modification of the class would violate OCP.
+The NotificationService class directly handles email notifications. If we need to add SMS notifications, we would have to modify the NotificationService class, which violates OCP.
+
+dart
+Copy code
 
 ``` dart
 
 class NotificationService {
-  void sendNotification(String type, String message) {
-    if (type == 'email') {
-      print('Sending Email: $message');
-    } else if (type == 'sms') {
-      print('Sending SMS: $message');
-    } else if (type == 'push') {
-      print('Sending Push Notification: $message');
-    }
+  void sendEmail(String message) {
+    print('Sending email: $message');
   }
 }
+
 
 ```
 **Why does this violate OCP ?**
 
-- **Closed for modification :** Every time a new notification type is added, we must modify the existing sendNotification method.
-  
 - **Increased risk of bugs :** Modifying the existing logic may unintentionally break other functionalities.
+
+- **Adding a new type of notification (e.g., SMS) requires modifying this class :**
+
+``` dart
+  // Modified NotificationService (Violates OCP)
+class NotificationService {
+  void sendEmail(String message) {
+    print('Sending email: $message');
+  }
+
+  void sendSms(String message) { // Modification
+    print('Sending SMS: $message');
+  }
+}
+```
+
+  **Solution : Applying OCP using Abstract Class :**
+
+  We can apply the Open/Closed Principle by introducing an abstract class that defines the contract for sending notifications. Each type of notification will have its own class that implements this abstract class. The NotificationService will then work with any notification type without needing modification.
+
+1. Create an abstract class Notification :
+
+``` dart
+abstract class Notification {
+  void send(String message);
+}
+```
+We can refactor the code by introducing an abstract class Notification that defines the contract for sending notifications. Now, NotificationService depends on the Notification abstract class rather than concrete implementations.
+
+``` dart
+// Abstract class defining the contract (acts as an interface)
+abstract class Notification {
+  void send(String message); // Abstract method
+}
+
+// EmailNotification class implementing the Notification interface
+class EmailNotification implements Notification {
+  @override
+  void send(String message) {
+    print('Sending email: $message');
+  }
+}
+
+// SmsNotification class implementing the Notification interface
+class SmsNotification implements Notification {
+  @override
+  void send(String message) {
+    print('Sending SMS: $message');
+  }
+}
+
+// NotificationService depends on the abstract Notification class
+class NotificationService {
+  final Notification notification;
+
+  NotificationService(this.notification);
+
+  void sendNotification(String message) {
+    notification.send(message);
+  }
+}
+
+void main() {
+  // Using EmailNotification
+  NotificationService emailService = NotificationService(EmailNotification());
+  emailService.sendNotification('Hello via Email!');
+
+  // Using SmsNotification without modifying NotificationService
+  NotificationService smsService = NotificationService(SmsNotification());
+  smsService.sendNotification('Hello via SMS!');
+}
+```
+NotificationService is now closed for modification. We don’t need to modify it to add new types of notifications.
+
+It’s open for extension by creating new classes (PushNotification, SlackNotification) that implement the Notification interface.
+
+
+
+
+
+
 
 
 
