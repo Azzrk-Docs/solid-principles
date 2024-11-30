@@ -351,7 +351,7 @@ class NotificationService {
 
   **Solution : Applying OCP using Abstract Class :**
   
- * Note :Dart does not have a separate keyword for interfaces. Instead, an abstract class with only method signatures (no implementation) acts as an interface.
+ * Note : Dart does not have a separate keyword for interfaces. Instead, an abstract class with only method signatures (no implementation) acts as an interface.
 
   We can apply the Open/Closed Principle by introducing an abstract class that defines the contract for sending notifications. Each type of notification will have its own class that implements this abstract class. The NotificationService will then work with any notification type without needing modification.
   
@@ -411,6 +411,13 @@ void main() {
 NotificationService is now closed for modification. We don’t need to modify it to add new types of notifications.
 
 It’s open for extension by creating new classes (PushNotification, SlackNotification) that implement the Notification interface.
+
+**By using abstract classes and interfaces effectively, you can design your Flutter applications to be flexible, maintainable, and compliant with the Open/Closed Principle.**
+
+---
+
+## 3. Liskov Substitution Principle (LSP) : 
+
 
 
 
