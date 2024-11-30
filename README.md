@@ -274,13 +274,49 @@ class UserProfileWidget extends StatelessWidget {
 
 ## 2. Open/Closed Principle (OCP) : 
 
-**What is the Open/Closed Principle?**
+**What is the Open/Closed Principle ?**
 
 "Software entities (classes, modules, functions, etc.) should be open for extension, but closed for modification."
 
 * Closed for modification : Once written and tested, the original code should not be changed.
   
 * Open for extension : New functionality should be added by extending the existing code, not by modifying it.
+
+  This means that you should be able to extend the behavior of a class or a module without modifying its existing code. In other words, you should write code that can grow through extension rather than by altering its existing structure.
+
+
+  ## Why is OCP Important in Flutter ?
+
+  In Flutter development, adhering to OCP helps to :
+
+- **Enhance code scalability :** You can add new features without modifying the existing code, reducing the risk of introducing bugs.
+  
+- **Improve maintainability :** The original code remains untouched, making it easier to manage.
+  
+- **Facilitate testing :** Since the existing code isn’t modified, you don’t need to retest it, which can save significant time and effort.
+  
+
+ ## How to Achieve OCP ?
+
+ **You can implement the Open/Closed Principle using two primary approaches :**
+
+ **1. Abstract Classes :**
+ 
+ Create a base class with common functionality and allow child classes to extend and implement additional behaviors.
+
+
+ **2. Interfaces :**
+
+ Define an interface with specific methods that can be implemented by multiple classes, enabling each class to have its own version of the behavior.
+
+
+
+
+
+
+
+
+
 
   
 
