@@ -274,6 +274,20 @@ class UserProfileWidget extends StatelessWidget {
 
 ## 2. Open/Closed Principle (OCP) : 
 
+**What is the Open/Closed Principle?**
+
+"Software entities (classes, modules, functions, etc.) should be open for extension, but closed for modification."
+
+* Closed for modification : Once written and tested, the original code should not be changed.
+  
+* Open for extension : New functionality should be added by extending the existing code, not by modifying it.
+
+  
+
+
+
+
+
 
 
 
