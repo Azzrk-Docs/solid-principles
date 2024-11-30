@@ -309,6 +309,35 @@ In Flutter development, adhering to OCP helps to :
 
  Define an interface with specific methods that can be implemented by multiple classes, enabling each class to have its own version of the behavior.
 
+ ### Example :
+
+ **Problem : Violating OCP :**
+ Consider a NotificationService that sends different types of notifications (e.g., Email, SMS, Push). Initially, it only sends email notifications, but now we need to add SMS and push notifications. A direct modification of the class would violate OCP.
+
+``` dart
+
+class NotificationService {
+  void sendNotification(String type, String message) {
+    if (type == 'email') {
+      print('Sending Email: $message');
+    } else if (type == 'sms') {
+      print('Sending SMS: $message');
+    } else if (type == 'push') {
+      print('Sending Push Notification: $message');
+    }
+  }
+}
+
+```
+**Why does this violate OCP ?**
+
+- **Closed for modification :** Every time a new notification type is added, we must modify the existing sendNotification method.
+  
+- **Increased risk of bugs :** Modifying the existing logic may unintentionally break other functionalities.
+
+
+
+
 
 
 
