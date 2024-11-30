@@ -418,6 +418,21 @@ It’s open for extension by creating new classes (PushNotification, SlackNotifi
 
 ## 3. Liskov Substitution Principle (LSP) : 
 
+ **The Liskov Substitution Principle (LSP) states that :**
+ 
+ **If class B inherits from class A, then class A should be replaceable by class B without any changes to the program's functionality.**
+
+ LSP is a concept focused on inheritance and can be considered an extension of the Open/Closed Principle (OCP). While OCP emphasizes the ability to add new functionality to a class without altering the existing code, LSP takes this a step further. It ensures that subclasses can replace their superclasses without causing issues in the system.
+
+
+ In other words, when class B inherits from class A, anywhere that class A is used, class B can be used in its place without introducing errors or unexpected behavior. This guarantees that the subclass (B) behaves consistently with the superclass (A), preserving the expected behavior.
+
+
+
+
+
+
+
 
 
 
