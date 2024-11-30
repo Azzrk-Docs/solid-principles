@@ -311,7 +311,8 @@ In Flutter development, adhering to OCP helps to :
 
  ### Example :
 
- **Problem : Violating OCP :**
+ **Problem Violating OCP :**
+ 
  Consider a NotificationService that sends different types of notifications (e.g., Email, SMS, Push). Initially, it only sends email notifications, but now we need to add SMS and push notifications. A direct modification of the class would violate OCP.
 
 ``` dart
