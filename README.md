@@ -268,13 +268,12 @@ class UserProfileWidget extends StatelessWidget {
 - **Testability: With SRP, you can test UserService, UserProfileViewModel, and UserProfileWidget independently.**
   
 - **Maintainability: Changes to the UI, state management, or data fetching can be made in isolation.**
-
-
-
-
-
+  
 
 ---
+
+## 2. Open/Closed Principle (OCP) : 
+
 
 
 
