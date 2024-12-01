@@ -517,6 +517,16 @@ In this example :
   
 By doing this, we ensure that we can substitute a Bird with either a Sparrow or a Penguin without violating the Liskov Substitution Principle. 
 
+**By adhering to the Liskov Substitution Principle, you ensure that your Flutter application remains flexible, maintainable, and robust. Properly designed subclasses help prevent the introduction of unexpected bugs when extending functionality, enabling you to build scalable and reliable software.**
+
+---
+
+## 4. Interface Segregation Principle (ISP) : 
+
+
+
+
+
 
 
 
