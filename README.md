@@ -530,7 +530,7 @@ The Interface Segregation Principle (ISP) is closely related to the Single Respo
 
 The principle emphasizes separating unrelated functionalities into smaller, more focused interfaces. Each interface should contain methods or operations that are related to a single concern or logic. This ensures that the client implementing the interface only needs to implement the methods they actually need, without being forced to implement unnecessary ones.
 
-##Why Is ISP Important ?
+## Why Is ISP Important ?
 
 - **Improves Maintainability :** Smaller interfaces are easier to understand, maintain, and extend.
   
@@ -542,13 +542,13 @@ The principle emphasizes separating unrelated functionalities into smaller, more
   
   A fat interface is an interface or class that contains all possible methods for various functionalities, even if they are not related. This leads to bloated, oversized interfaces that force classes to implement methods they don’t need.
 
-* Why is this a problem ?
+### Why is this a problem ?
 
 It violates the principle of cohesion because the interface is handling multiple unrelated concerns.
 
 It increases the complexity of the implementing class and makes the code harder to maintain.
 
-* Solution :
+### Solution :
   
 Split the large interface into smaller, more focused interfaces, where each interface is responsible for a specific, cohesive set of operations.
 
