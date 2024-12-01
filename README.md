@@ -317,8 +317,6 @@ In Flutter development, adhering to OCP helps to :
  
 The NotificationService class directly handles email notifications. If we need to add SMS notifications, we would have to modify the NotificationService class, which violates OCP.
 
-dart
-Copy code
 
 ``` dart
 
@@ -426,6 +424,117 @@ It’s open for extension by creating new classes (PushNotification, SlackNotifi
 
 
  In other words, when class B inherits from class A, anywhere that class A is used, class B can be used in its place without introducing errors or unexpected behavior. This guarantees that the subclass (B) behaves consistently with the superclass (A), preserving the expected behavior.
+
+ **How LSP Extends OCP ?**
+ 
+ The Open/Closed Principle allows for extending a class with new functionality without modifying the existing code. LSP builds on this principle by ensuring that these extensions (i.e., subclasses) can be safely substituted for the parent class, ensuring that the system remains correct and predictable.
+
+ In simpler terms, LSP ensures that subclasses can seamlessly replace their parent classes without affecting the overall system's integrity, making it easier to extend and maintain the codebase.
+
+ ## Why LSP is Important ?
+
+ LSP promotes correctness and reusability in our code. It ensures that when we use inheritance, we maintain the behavior expected of the base class even when using subclasses. This principle helps avoid scenarios where substituting a subclass for its superclass introduces unexpected behavior or causes runtime errors.
+
+  ### Violating LSP : A Bad Example 
+
+  Consider a Bird class with a method fly(). If we create a subclass Penguin that doesn't have the ability to fly, substituting a Bird object with a Penguin object would break the expected behavior.
+
+``` dart
+
+class Bird {
+  void fly() {
+    print('Flying');
+  }
+}
+
+class Penguin extends Bird {
+  @override
+  void fly() {
+    // Penguins can't fly, so this violates LSP
+    throw Exception('Penguins cannot fly');
+  }
+}
+
+void main() {
+  Bird bird = Penguin();
+  bird.fly();  // Exception: Penguins cannot fly
+}
+```
+In the example above, the Penguin subclass introduces unexpected behavior, breaking the Liskov Substitution Principle.
+
+### Correct Use of LSP : A Good Example
+
+To comply with LSP, we can design the system such that Penguin does not override the fly() method. Instead, we can define separate behavior for birds that can fly (like a Sparrow) and birds that cannot (like a Penguin).
+
+``` dart
+// Interface for flying
+abstract class Flyable {
+  void fly();
+}
+
+class Bird {
+  String name;
+
+  Bird(this.name);
+}
+
+class Sparrow extends Bird implements Flyable {
+  Sparrow(String name) : super(name);
+
+  @override
+  void fly() {
+    print('$name is flying');
+  }
+}
+
+class Penguin extends Bird {
+  Penguin(String name) : super(name);
+
+  void swim() {
+    print('$name is swimming');
+  }
+}
+
+void main() {
+  Bird sparrow = Sparrow('Sparrow');
+  Bird penguin = Penguin('Penguin');
+
+  if (sparrow is Flyable) {
+    (sparrow as Flyable).fly();  // Correct behavior for sparrows
+  }
+
+  if (penguin is Penguin) {
+    penguin.swim();  // Correct behavior for penguins
+  }
+}
+```
+
+In this example :
+
+- **The Sparrow class implements the Flyable interface and provides a correct implementation of the fly() method.**
+  
+- **The Penguin class does not implement the Flyable interface, as penguins cannot fly, thus preserving the LSP.**
+  
+By doing this, we ensure that we can substitute a Bird with either a Sparrow or a Penguin without violating the Liskov Substitution Principle. 
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+ 
+
+
 
 
 
