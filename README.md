@@ -726,6 +726,85 @@ The OrderService class is tightly coupled to the SqlOrderRepository.
 
 If we need to switch to a different database (e.g., NoSQL), we need to modify the OrderService, violating the Open/Closed Principle (OCP) as well.
 
+### Solution : Applying DIP
+
+We can refactor the code by introducing an abstraction (OrderRepository interface) that both the high-level and low-level modules depend on :
+
+``` dart
+// Abstraction (Interface)
+abstract class OrderRepository {
+  void saveOrder(String order);
+}
+
+// Low-level module (depends on abstraction)
+class SqlOrderRepository implements OrderRepository {
+  @override
+  void saveOrder(String order) {
+    print("Saving order to SQL database: $order");
+  }
+}
+
+// Another low-level module (depends on abstraction)
+class NoSqlOrderRepository implements OrderRepository {
+  @override
+  void saveOrder(String order) {
+    print("Saving order to NoSQL database: $order");
+  }
+}
+
+// High-level module (depends on abstraction, not implementation)
+class OrderService {
+  final OrderRepository repository;
+
+  OrderService(this.repository);
+
+  void processOrder(String order) {
+    repository.saveOrder(order);
+  }
+}
+
+void main() {
+  // Dependency injection
+  OrderRepository sqlRepository = SqlOrderRepository();
+  OrderService service = OrderService(sqlRepository);
+
+  service.processOrder("Order #1");
+
+  // Switching to NoSQL repository without changing OrderService
+  OrderRepository noSqlRepository = NoSqlOrderRepository();
+  service = OrderService(noSqlRepository);
+
+  service.processOrder("Order #2");
+}
+```
+
+### Benefits of Applying DIP :
+
+**Loose Coupling :**
+
+High-level modules (OrderService) are not dependent on specific implementations, making the code more modular and flexible.
+
+**Ease of Maintenance :**
+
+Changes to low-level modules (e.g., switching from SQL to NoSQL) do not require modifications to high-level modules.
+
+**Improved Testability :**
+
+High-level modules can be easily tested by passing mock or fake implementations of the interfaces.
+
+**Main Points :**
+Depend on abstractions, not concrete implementations.
+
+Both high-level and low-level modules should rely on interfaces or abstract classes.
+
+Use Dependency Injection to pass dependencies at runtime, making the code more flexible and maintainable.
+
+
+
+
+
+
+
 
 
 
