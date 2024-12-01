@@ -523,6 +523,43 @@ By doing this, we ensure that we can substitute a Bird with either a Sparrow or 
 
 ## 4. Interface Segregation Principle (ISP) : 
 
+**"Clients should not be forced to depend on methods they do not use."**
+
+The Interface Segregation Principle (ISP) is closely related to the Single Responsibility Principle (SRP). While SRP ensures that a class has only one responsibility, ISP focuses on ensuring that an interface contains only methods that are relevant and cohesive for a specific functionality or logical grouping.
+
+
+The principle emphasizes separating unrelated functionalities into smaller, more focused interfaces. Each interface should contain methods or operations that are related to a single concern or logic. This ensures that the client implementing the interface only needs to implement the methods they actually need, without being forced to implement unnecessary ones.
+
+##Why Is ISP Important ?
+
+- **Improves Maintainability :** Smaller interfaces are easier to understand, maintain, and extend.
+  
+- **Reduces Unused Code :** Classes are not forced to implement unnecessary methods that don't apply to them.
+
+- **Enhances Flexibility :** Promotes a clean and modular design, making the code easier to refactor and extend.
+
+- **Avoid Fat Interfaces :**
+  
+  A fat interface is an interface or class that contains all possible methods for various functionalities, even if they are not related. This leads to bloated, oversized interfaces that force classes to implement methods they don’t need.
+
+* Why is this a problem ?
+
+It violates the principle of cohesion because the interface is handling multiple unrelated concerns.
+
+It increases the complexity of the implementing class and makes the code harder to maintain.
+
+* Solution :
+  
+Split the large interface into smaller, more focused interfaces, where each interface is responsible for a specific, cohesive set of operations.
+
+
+
+
+
+
+
+
+
 
 
 
