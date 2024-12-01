@@ -552,6 +552,117 @@ It increases the complexity of the implementing class and makes the code harder 
   
 Split the large interface into smaller, more focused interfaces, where each interface is responsible for a specific, cohesive set of operations.
 
+### Example : Violating ISP  
+
+Consider a Flutter app where different types of notifications are displayed : Email Notifications and Push Notifications.
+
+Problem : A single interface Notification forces both notification types to implement methods they don’t need.
+
+``` dart
+// Single Interface (Violates ISP)
+abstract class Notification {
+  void sendEmail();    // Only relevant for email notifications
+  void sendPush();     // Only relevant for push notifications
+}
+
+class EmailNotification implements Notification {
+  @override
+  void sendEmail() {
+    print("Sending email notification...");
+  }
+
+  @override
+  void sendPush() {
+    // Not applicable
+    throw UnimplementedError("EmailNotification does not support push notifications.");
+  }
+}
+
+class PushNotification implements Notification {
+  @override
+  void sendPush() {
+    print("Sending push notification...");
+  }
+
+  @override
+  void sendEmail() {
+    // Not applicable
+    throw UnimplementedError("PushNotification does not support email notifications.");
+  }
+}
+```
+
+What's Wrong ?
+
+Both EmailNotification and PushNotification are forced to implement methods they do not use, leading to unnecessary code and potential runtime errors.
+
+### Solution : Applying ISP
+
+Split the Notification interface into two smaller, more specific interfaces : EmailNotificationInterface and PushNotificationInterface.
+
+``` dart
+// Separate Interfaces (Follows ISP)
+abstract class EmailNotificationInterface {
+  void sendEmail();
+}
+
+abstract class PushNotificationInterface {
+  void sendPush();
+}
+
+// EmailNotification only implements the email-related interface
+class EmailNotification implements EmailNotificationInterface {
+  @override
+  void sendEmail() {
+    print("Sending email notification...");
+  }
+}
+
+// PushNotification only implements the push-related interface
+class PushNotification implements PushNotificationInterface {
+  @override
+  void sendPush() {
+    print("Sending push notification...");
+  }
+}
+
+void main() {
+  EmailNotification emailNotification = EmailNotification();
+  emailNotification.sendEmail();  // Correct behavior
+
+  PushNotification pushNotification = PushNotification();
+  pushNotification.sendPush();  // Correct behavior
+}
+```
+
+### Benefits of Applying ISP
+
+- **No Unnecessary Methods :**
+
+Each class only implements the methods it needs.
+
+- **Better Code Organization :**
+
+Smaller, focused interfaces make the code easier to understand and maintain.
+
+- **Improved Testability :**
+
+Smaller interfaces allow for more targeted unit tests.
+
+- **Flexible Extensions :**
+
+New notification types (e.g., SMS) can be added without modifying existing interfaces or classes.
+
+**Main Concept :**
+
+* The Interface Segregation Principle (ISP) ensures that classes are only responsible for methods they need.
+  
+* By breaking down large interfaces into smaller, more specific ones, you reduce complexity, improve maintainability, and adhere to a clean architecture.
+
+---
+
+
+## 5. Dependency Inversion Principle (DIP) : 
 
 
 
