@@ -664,6 +664,26 @@ New notification types (e.g., SMS) can be added without modifying existing inter
 
 ## 5. Dependency Inversion Principle (DIP) : 
 
+**"High-level modules should not depend on low-level modules. Both should depend on abstractions."**
+
+The Dependency Inversion Principle (DIP) focuses on reducing the coupling between high-level (business logic) and low-level (implementation details) components in your code. This is achieved by relying on abstractions (interfaces or abstract classes) rather than concrete implementations.
+
+- **High-Level Modules :**
+  
+These are the components responsible for the main logic of the application.
+Example: A service that processes orders in an e-commerce app.
+
+- **Low-Level Modules :**
+  
+These are the components responsible for handling specific tasks like database access, API calls, etc.
+Example: A class that interacts with a database to store or retrieve order information.
+
+- **Abstractions :**
+  
+Interfaces or abstract classes that define contracts for how components should interact. This decouples high-level modules from low-level details.
+
+
+
 
 
 
