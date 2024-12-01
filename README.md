@@ -682,6 +682,53 @@ Example: A class that interacts with a database to store or retrieve order infor
   
 Interfaces or abstract classes that define contracts for how components should interact. This decouples high-level modules from low-level details.
 
+### Why DIP is Important ?
+
+**Decouples Code :** High-level components are not tightly coupled to low-level implementations, making the system easier to maintain and extend.
+
+**Improves Flexibility :** Switching or modifying low-level implementations doesn't affect the high-level logic.
+
+**Enhances Testability :** High-level modules can be tested independently using mock implementations of the dependencies.
+
+### Example : Violating DIP
+
+In this example, the OrderService depends directly on a concrete SqlOrderRepository, violating the Dependency Inversion Principle :
+
+``` dart
+// Low-level module (concrete class)
+class SqlOrderRepository {
+  void saveOrder(String order) {
+    print("Saving order to SQL database: $order");
+  }
+}
+
+// High-level module (depends on low-level module)
+class OrderService {
+  final SqlOrderRepository repository;
+
+  OrderService(this.repository);
+
+  void processOrder(String order) {
+    repository.saveOrder(order);
+  }
+}
+
+void main() {
+  SqlOrderRepository repository = SqlOrderRepository();
+  OrderService service = OrderService(repository);
+
+  service.processOrder("Order #1");
+}
+```
+* Problem :
+
+The OrderService class is tightly coupled to the SqlOrderRepository.
+
+If we need to switch to a different database (e.g., NoSQL), we need to modify the OrderService, violating the Open/Closed Principle (OCP) as well.
+
+
+
+
 
 
 
