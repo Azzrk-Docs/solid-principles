@@ -800,6 +800,33 @@ Both high-level and low-level modules should rely on interfaces or abstract clas
 Use Dependency Injection to pass dependencies at runtime, making the code more flexible and maintainable.
 
 
+``` dart
+// Before: Violating SRP
+class InvoiceManager {
+  void createInvoice() {
+    print("Invoice Created");
+  }
+
+  void sendEmail() {
+    print("Email Sent");
+  }
+}
+
+// After: Applying SRP
+class InvoiceManager {
+  void createInvoice() {
+    print("Invoice Created");
+  }
+}
+
+class EmailSender {
+  void sendEmail() {
+    print("Email Sent");
+  }
+}
+```
+
+
 
 
 
