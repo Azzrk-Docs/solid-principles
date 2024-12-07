@@ -801,29 +801,16 @@ Use Dependency Injection to pass dependencies at runtime, making the code more f
 
 
 ``` dart
-// Before: Violating SRP
-class InvoiceManager {
-  void createInvoice() {
-    print("Invoice Created");
-  }
-
-  void sendEmail() {
-    print("Email Sent");
-  }
-}
-
-// After: Applying SRP
-class InvoiceManager {
-  void createInvoice() {
-    print("Invoice Created");
+class NotificationService {
+  void sendNotification(String type) {
+    if (type == 'email') {
+      print("Sending email notification");
+    } else if (type == 'sms') {
+      print("Sending SMS notification");
+    }
   }
 }
 
-class EmailSender {
-  void sendEmail() {
-    print("Email Sent");
-  }
-}
 ```
 
 
