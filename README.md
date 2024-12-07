@@ -801,15 +801,20 @@ Use Dependency Injection to pass dependencies at runtime, making the code more f
 
 
 ``` dart
-class NotificationService {
-  void sendNotification(String type) {
-    if (type == 'email') {
-      print("Sending email notification");
-    } else if (type == 'sms') {
-      print("Sending SMS notification");
-    }
-  }
+void printArea(Rectangle rectangle) {
+  rectangle.width = 5;
+  rectangle.height = 10;
+  print(rectangle.getArea());
 }
+
+void main() {
+  Rectangle rectangle = Rectangle(5, 10);
+  printArea(rectangle); // Outputs: 50
+
+  Rectangle square = Square(5);
+  printArea(square); // Outputs: 25, but expected 50!
+}
+
 
 
 
