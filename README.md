@@ -801,24 +801,50 @@ Use Dependency Injection to pass dependencies at runtime, making the code more f
 
 
 ``` dart
-abstract class Printer {
-  void printDocument();
+// Abstract Class (Dependency - Interface)
+abstract class NotificationService {
+  void sendNotification(String message);
 }
 
-abstract class Scanner {
-  void scanDocument();
-}
+// High-Level Module
+class NotificationSender {
+  final NotificationService service;
 
-abstract class Fax {
-  void faxDocument();
-}
+  NotificationSender(this.service);
 
-class BasicPrinter implements Printer {
-  @override
-  void printDocument() {
-    print('Printing document...');
+  void notify(String message) {
+    service.sendNotification(message);
   }
 }
+
+// Low-Level Module 1: Email Service
+class EmailService implements NotificationService {
+  @override
+  void sendNotification(String message) {
+    print('Sending Email: $message');
+  }
+}
+
+// Low-Level Module 2: SMS Service
+class SMSService implements NotificationService {
+  @override
+  void sendNotification(String message) {
+    print('Sending SMS: $message');
+  }
+}
+
+void main() {
+  // Using Email Service
+  NotificationService emailService = EmailService();
+  NotificationSender emailSender = NotificationSender(emailService);
+  emailSender.notify("Your order has been shipped!");
+
+  // Using SMS Service
+  NotificationService smsService = SMSService();
+  NotificationSender smsSender = NotificationSender(smsService);
+  smsSender.notify("Your order is ready for pickup!");
+}
+
 
 
 
