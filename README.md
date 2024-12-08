@@ -801,9 +801,16 @@ Use Dependency Injection to pass dependencies at runtime, making the code more f
 
 
 ``` dart
-abstract class NotificationService {
-  void sendNotification(String message);
+class NotificationSender {
+  final NotificationService service;
+
+  NotificationSender(this.service);
+
+  void notify(String message) {
+    service.sendNotification(message);
+  }
 }
+
 
 
 
