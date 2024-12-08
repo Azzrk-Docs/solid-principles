@@ -803,7 +803,13 @@ Use Dependency Injection to pass dependencies at runtime, making the code more f
 ``` dart
 abstract class Printer {
   void printDocument();
+}
+
+abstract class Scanner {
   void scanDocument();
+}
+
+abstract class Fax {
   void faxDocument();
 }
 
@@ -812,17 +818,8 @@ class BasicPrinter implements Printer {
   void printDocument() {
     print('Printing document...');
   }
-
-  @override
-  void scanDocument() {
-    throw UnimplementedError('Scan not supported.');
-  }
-
-  @override
-  void faxDocument() {
-    throw UnimplementedError('Fax not supported.');
-  }
 }
+
 
 
 
