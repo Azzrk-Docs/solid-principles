@@ -801,21 +801,29 @@ Use Dependency Injection to pass dependencies at runtime, making the code more f
 
 
 ``` dart
-abstract class Shape {
-  double getArea();
+abstract class Printer {
+  void printDocument();
+  void scanDocument();
+  void faxDocument();
 }
 
-class Rectangle implements Shape {
-  double width, height;
-  Rectangle(this.width, this.height);
-  double getArea() => width * height;
+class BasicPrinter implements Printer {
+  @override
+  void printDocument() {
+    print('Printing document...');
+  }
+
+  @override
+  void scanDocument() {
+    throw UnimplementedError('Scan not supported.');
+  }
+
+  @override
+  void faxDocument() {
+    throw UnimplementedError('Fax not supported.');
+  }
 }
 
-class Square implements Shape {
-  double side;
-  Square(this.side);
-  double getArea() => side * side;
-}
 
 
 
