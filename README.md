@@ -800,6 +800,13 @@ Both high-level and low-level modules should rely on interfaces or abstract clas
 Use Dependency Injection to pass dependencies at runtime, making the code more flexible and maintainable.
 
 
+``` dart
+
+ref.read(counterProvider.notifier).state++;
+
+
+```
+
 
 
 
