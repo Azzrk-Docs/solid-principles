@@ -806,33 +806,24 @@ Use Dependency Injection to pass dependencies at runtime, making the code more f
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
-// Define a StateProvider for the counter
-final counterProvider = StateProvider<int>((ref) => 0);
+final userProvider = FutureProvider<Map<String, dynamic>>((ref) async {
+  final response = await http.get(Uri.parse('https://api.example.com/user'));
+  return jsonDecode(response.body);
+});
 
-void main() {
-  runApp(ProviderScope(child: MyApp()));
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: CounterScreen(),
-    );
-  }
-}
-
-class CounterScreen extends ConsumerWidget {
+class UserScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final count = ref.watch(counterProvider);
+    final userAsync = ref.watch(userProvider);
     return Scaffold(
-      appBar: AppBar(title: Text('Riverpod Counter')),
-      body: Center(child: Text('Count: $count')),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => ref.read(counterProvider.notifier).state++,
-        child: Icon(Icons.add),
+      appBar: AppBar(title: Text('User Data')),
+      body: userAsync.when(
+        data: (user) => Center(child: Text('Name: ${user['name']}')),
+        loading: () => Center(child: CircularProgressIndicator()),
+        error: (error, stack) => Center(child: Text('Error: $error')),
       ),
     );
   }
