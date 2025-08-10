@@ -802,34 +802,7 @@ Use Dependency Injection to pass dependencies at runtime, making the code more f
 
 
 
-``` dart
 
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
-
-final userProvider = FutureProvider<Map<String, dynamic>>((ref) async {
-  final response = await http.get(Uri.parse('https://api.example.com/user'));
-  return jsonDecode(response.body);
-});
-
-class UserScreen extends ConsumerWidget {
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final userAsync = ref.watch(userProvider);
-    return Scaffold(
-      appBar: AppBar(title: Text('User Data')),
-      body: userAsync.when(
-        data: (user) => Center(child: Text('Name: ${user['name']}')),
-        loading: () => Center(child: CircularProgressIndicator()),
-        error: (error, stack) => Center(child: Text('Error: $error')),
-      ),
-    );
-  }
-}
-
-```
 
 
 
